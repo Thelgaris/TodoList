@@ -9,10 +9,6 @@ const Home = () => {
 				<h1>TodoList</h1>
 			</div>
 			<Todo />
-			<TodoList />
-			<button type="button" class="btn btn-primary">
-				Don't be lazy my friend :)
-			</button>
 		</div>
 	);
 };

@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 
 const TodoList = () => {
-	return (
+	return list.map((listofthings) => {
 		<div>
+			<listofthings />
 			<div>tell</div>
 			<div>tell</div>
 			<div>tell</div>
@@ -12,8 +13,8 @@ const TodoList = () => {
 			<div>tell</div>
 			<div>tell</div>
 			<div>tell</div>
-		</div>
-	);
+		</div>;
+	});
 };
 
 export default TodoList;
