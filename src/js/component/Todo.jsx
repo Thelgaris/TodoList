@@ -13,6 +13,7 @@ const Todo = () => {
 				}}
 				onKeyDown={() => {
 					if (e.key === "Enter") {
+						console.log("You have pressed enter");
 						setListofthings([
 							...listofthings,
 							{ todo: listofthings },
@@ -29,7 +30,7 @@ const Todo = () => {
 			<button
 				type="button"
 				className="btn btn-primary"
-				onKeyDown={() => {}}
+				onMouseLeave={() => setIsShown(false)}
 				onClick={() => {
 					setListofthings([...listofthings, { todo: listofthings }]);
 					setThingstodo(() => {
@@ -38,6 +39,14 @@ const Todo = () => {
 				}}>
 				Don't be lazy my friend :)
 			</button>
+
+			{listofthings.map((my) => {
+				return (
+					<div className="card">
+						<div className="card-body">{my.thingstodo}</div>
+					</div>
+				);
+			})}
 		</div>
 	);
 };
