@@ -1,3 +1,4 @@
+import propTypes from "prop-types";
 import React, { useState } from "react";
 
 const Todo = () => {
@@ -18,9 +19,6 @@ const Todo = () => {
 							...listofthings,
 							{ todo: listofthings },
 						]);
-						setThingstodo(() => {
-							return " ";
-						});
 					}
 				}}
 				className="form-control"
@@ -30,7 +28,6 @@ const Todo = () => {
 			<button
 				type="button"
 				className="btn btn-primary"
-				onMouseLeave={() => setIsShown(false)}
 				onClick={() => {
 					setListofthings([...listofthings, { todo: listofthings }]);
 					setThingstodo(() => {
@@ -51,4 +48,7 @@ const Todo = () => {
 	);
 };
 
+Todo.propTypes = {
+	test: propTypes.string,
+};
 export default Todo;
