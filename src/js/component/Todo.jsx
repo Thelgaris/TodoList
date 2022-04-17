@@ -1,9 +1,10 @@
 import propTypes from "prop-types";
 import React, { useState } from "react";
 
-const Todo = () => {
+const Todo = (props) => {
 	const [thingstodo, setThingstodo] = useState("");
 	const [listofthings, setListofthings] = useState([]);
+	const [counter, setCounter] = useState("0");
 
 	return (
 		<div className="mb-3 container">
@@ -12,13 +13,14 @@ const Todo = () => {
 				onChange={(e) => {
 					setThingstodo(e.target.value);
 				}}
-				onKeyDown={() => {
-					if (e.key === "Enter") {
-						console.log("You have pressed enter");
-						setListofthings([
-							...listofthings,
-							{ todo: listofthings },
-						]);
+				onKeyDown={(e) => {
+					console.log(e.key);
+					if (e.key == "Enter" && e.target.value != "") {
+						setListofthings([...listofthings, { thingstodo }]);
+
+						setThingstodo(() => {
+							return "";
+						});
 					}
 				}}
 				className="form-control"
@@ -29,17 +31,17 @@ const Todo = () => {
 				type="button"
 				className="btn btn-primary"
 				onClick={() => {
-					setListofthings([...listofthings, { todo: listofthings }]);
+					setListofthings([...listofthings, { thingstodo }]);
 					setThingstodo(() => {
-						return " ";
+						return "";
 					});
 				}}>
 				Don't be lazy my friend :)
 			</button>
 
-			{listofthings.map((my) => {
+			{listofthings.map((my, index) => {
 				return (
-					<div className="card">
+					<div className="card" key={index}>
 						<div className="card-body">{my.thingstodo}</div>
 					</div>
 				);
