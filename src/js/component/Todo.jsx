@@ -15,7 +15,7 @@ const Todo = (props) => {
 				}}
 				onKeyDown={(e) => {
 					console.log(e.key);
-					if (e.key == "Enter" && e.target.value != "") {
+					if (e.key == "Enter" && e.target.value.trim() != "") {
 						setListofthings([...listofthings, { thingstodo }]);
 
 						setThingstodo(() => {
