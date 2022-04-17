@@ -4,7 +4,7 @@ import React, { useState } from "react";
 const Todo = (props) => {
 	const [thingstodo, setThingstodo] = useState("");
 	const [listofthings, setListofthings] = useState([]);
-	const [counter, setCounter] = useState("0");
+	const [counter, setCounter] = useState("");
 
 	return (
 		<div className="mb-3 container">
@@ -16,11 +16,13 @@ const Todo = (props) => {
 				onKeyDown={(e) => {
 					console.log(e.key);
 					if (e.key == "Enter" && e.target.value.trim() != "") {
-						setListofthings([...listofthings, { thingstodo }]);
+						if (e.listofthings != e.target.value) {
+							setListofthings([...listofthings, { thingstodo }]);
 
-						setThingstodo(() => {
-							return "";
-						});
+							setThingstodo(() => {
+								return "";
+							});
+						}
 					}
 				}}
 				className="form-control"
@@ -41,7 +43,6 @@ const Todo = (props) => {
 				}}>
 				Don't be lazy my friend :)
 			</button>
-
 			{listofthings.map((my, index) => {
 				return (
 					<div className="card" key={index}>
@@ -49,6 +50,13 @@ const Todo = (props) => {
 					</div>
 				);
 			})}
+			{setCounter(() => {
+				return listofthings.length;
+			})}
+			<div className="card">
+				<div className="card-body">{counter}</div>
+			</div>
+			;
 		</div>
 	);
 };
