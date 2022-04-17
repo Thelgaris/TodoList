@@ -28,13 +28,16 @@ const Todo = (props) => {
 				placeholder="Write your shit to do buddy"
 			/>
 			<button
+				value={thingstodo}
 				type="button"
 				className="btn btn-primary"
-				onClick={() => {
-					setListofthings([...listofthings, { thingstodo }]);
-					setThingstodo(() => {
-						return "";
-					});
+				onClick={(e) => {
+					if (e.target.value.trim() != "") {
+						setListofthings([...listofthings, { thingstodo }]);
+						setThingstodo(() => {
+							return "";
+						});
+					}
 				}}>
 				Don't be lazy my friend :)
 			</button>
