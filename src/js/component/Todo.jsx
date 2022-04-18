@@ -9,6 +9,10 @@ const Todo = (props) => {
 		getTodoList();
 	}, []);
 
+	useEffect(() => {
+		updateTodoList();
+	}, [listofthings]);
+
 	const getTodoList = async () => {
 		const response = await fetch(
 			"https://assets.breatheco.de/apis/fake/todos/user/Ale",
@@ -23,10 +27,10 @@ const Todo = (props) => {
 		const data = await response.json();
 		setListofthings(data);
 	};
-	const updateTodoList = async (newlist) => {
+	const updateTodoList = async () => {
 		await fetch("https://assets.breatheco.de/apis/fake/todos/user/Ale", {
 			method: "PUT",
-			body: JSON.stringify(newlist),
+			body: JSON.stringify(listofthings),
 			headers: {
 				"Content-Type": "application/json",
 			},
@@ -47,10 +51,6 @@ const Todo = (props) => {
 						if (e.key == "Enter" && e.target.value.trim() != "") {
 							if (e.target.value.trim != listofthings) {
 								setListofthings([
-									...listofthings,
-									{ label: thingstodo, done: false },
-								]);
-								updateTodoList([
 									...listofthings,
 									{ label: thingstodo, done: false },
 								]);
@@ -76,11 +76,9 @@ const Todo = (props) => {
 								...listofthings,
 								{ label: thingstodo, done: false },
 							]);
-							
 							setThingstodo(() => {
 								return "";
 							});
-							
 						}
 					}}>
 					Don't be lazy my friend :)
