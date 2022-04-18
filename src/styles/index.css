@@ -10,11 +10,9 @@
     import 'relative/path/to/stylesheet.scss';
 
 */
+
 .body {
     background-color: grey;
     text-align: center;
-    padding: 10px;
-}
-btn-primary {
-    margin-top: 10px;
+ 
 }
