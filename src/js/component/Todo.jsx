@@ -4,13 +4,16 @@ import React, { useState, useEffect } from "react";
 const Todo = (props) => {
 	const [thingstodo, setThingstodo] = useState("");
 	const [listofthings, setListofthings] = useState([]);
+	const [firstRender, setFirstRender] = useState(false);
 
 	useEffect(() => {
 		getTodoList();
 	}, []);
 
 	useEffect(() => {
-		updateTodoList();
+		if (firstRender) {
+			updateTodoList();
+		}
 	}, [listofthings]);
 
 	const getTodoList = async () => {
@@ -18,7 +21,6 @@ const Todo = (props) => {
 			"https://assets.breatheco.de/apis/fake/todos/user/Ale",
 			{
 				method: "GET",
-
 				headers: {
 					"Content-Type": "application/json",
 				},
@@ -26,6 +28,7 @@ const Todo = (props) => {
 		);
 		const data = await response.json();
 		setListofthings(data);
+		setFirstRender(true);
 	};
 	const updateTodoList = async () => {
 		await fetch("https://assets.breatheco.de/apis/fake/todos/user/Ale", {
@@ -90,14 +93,19 @@ const Todo = (props) => {
 					<div className="card row" key={index}>
 						<div className="card-body d-flex">
 							<div className="col-10">{my.label}</div>
-							<button type="button" className="btn btn-light">
+							<button
+								type="button"
+								className="btn btn-light"
+								onClick={() => {
+									setListofthings = "";
+								}}>
 								X
 							</button>
 						</div>
 					</div>
 				);
 			})}
-			<div>{listofthings.length} tareas por hacer</div>
+			<div>{listofthings.length} things to move your ass!!</div>
 		</div>
 	);
 };
