@@ -52,7 +52,7 @@ const Todo = (props) => {
 					}}
 					onKeyDown={(e) => {
 						if (e.key == "Enter" && e.target.value.trim() != "") {
-							if (e.target.value.trim != listofthings) {
+							if (e.target.value.trim != listofthings[label]) {
 								setListofthings([
 									...listofthings,
 									{ label: thingstodo, done: false },
@@ -74,7 +74,10 @@ const Todo = (props) => {
 					type="button"
 					className="btn btn-primary"
 					onClick={(e) => {
-						if (thingstodo != "") {
+						if (
+							thingstodo != "" &&
+							e.target.value.trim != listofthings[label]
+						) {
 							setListofthings([
 								...listofthings,
 								{ label: thingstodo, done: false },
@@ -82,7 +85,7 @@ const Todo = (props) => {
 							setThingstodo(() => {
 								return "";
 							});
-						}
+						} else alert("You cannot do that");
 					}}>
 					Don't be lazy my friend :)
 				</button>
@@ -96,8 +99,19 @@ const Todo = (props) => {
 							<button
 								type="button"
 								className="btn btn-light"
-								onClick={() => {
-									setListofthings = "";
+								onClick={(label) => {
+									{
+										let remove = [];
+										for (
+											let index = 0;
+											index < listofthings.length;
+											index++
+										); 
+										let listremover = listofthings[label];
+										if (label != listremover) {
+											remove.push(label);
+										}
+									}
 								}}>
 								X
 							</button>
